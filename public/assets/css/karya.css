@@ -1,0 +1,237 @@
+/* =====================================================================
+   KARYA.CSS — Halaman "Pojok Karya Mahasiswa"
+   ===================================================================== */
+
+/* --- Hero --- */
+.karya-hero {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.karya-hero__kicker {
+  display: inline-block;
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.karya-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--maroon-900);
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.karya-hero p {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Grid & Kartu Karya --- */
+.karya-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 280px);
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 24px;
+}
+
+.karya-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.karya-card:hover,
+.karya-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--gold-500);
+}
+
+.karya-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--maroon-900);
+  overflow: hidden;
+}
+
+.karya-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms ease;
+}
+
+.karya-card:hover .karya-card__thumb img { transform: scale(1.05); }
+
+.karya-card__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.karya-card__play span {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(74, 15, 26, 0.75);
+  border: 2px solid var(--gold-300);
+  display: grid;
+  place-items: center;
+  color: var(--gold-300);
+  font-size: 0.9rem;
+}
+
+.karya-card__body {
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.karya-card__kategori {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--maroon-700);
+}
+
+.karya-card__title {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.karya-card__kreator {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-top: auto;
+}
+
+/* --- State: loading & kosong --- */
+.karya-state {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================================
+   MODAL DETAIL KARYA
+   ===================================================================== */
+.karya-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.karya-modal.is-open { display: flex; }
+
+.karya-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 27, 24, 0.6);
+  animation: fade-in 200ms ease both;
+}
+
+.karya-modal__panel {
+  position: relative;
+  background: var(--paper);
+  border-radius: 18px;
+  max-width: 720px;
+  width: 100%;
+  padding: 32px;
+  animation: modal-in 260ms ease both;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.karya-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--offwhite);
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+.karya-modal__close:hover { background: var(--maroon-700); color: var(--offwhite); }
+
+.karya-modal__kategori {
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.karya-modal__panel h2 {
+  color: var(--maroon-900);
+  font-size: 1.5rem;
+  margin-top: 6px;
+}
+
+.karya-modal__kreator {
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+
+.karya-modal__video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--maroon-900);
+  margin-bottom: 20px;
+}
+
+.karya-modal__video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.karya-modal__desc {
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+
+.karya-modal__actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}

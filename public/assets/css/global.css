@@ -1,0 +1,602 @@
+/* =====================================================================
+   GLOBAL.CSS — Tema & komponen dasar Website Publik HMIF Unperba
+   Vanilla CSS3 murni (Flexbox + Grid), tanpa framework.
+   ===================================================================== */
+
+/* Font Google (Poppins, Inter) dimuat lewat <link> di <head> tiap
+   halaman HTML, bukan @import di sini — @import itu render-blocking
+   dan nambah satu round-trip jaringan sebelum browser tahu perlu
+   ambil fontnya, jadi kerasa lebih lambat. */
+
+:root {
+  /* --- Palet warna brand HMIF Unperba --- */
+  --maroon-900: #4a0f1a; /* header, nav bg */
+  --maroon-700: #7a1f2c; /* tombol utama / CTA */
+  --maroon-600: #8f2635; /* hover tombol maroon */
+  --gold-500: #c8a13a; /* aksen utama: hover, tab aktif, ikon */
+  --gold-300: #e2c878; /* aksen terang */
+  --offwhite: #f8f5ef; /* background utama */
+  --paper: #ffffff; /* kartu / permukaan */
+  --ink: #241b18; /* teks utama, hitam kemerahan hangat */
+  --ink-soft: #6b5d58; /* teks sekunder */
+  --line: #e7ddd0; /* border tipis */
+
+  --font-display: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --radius: 14px;
+  --shadow-card: 0 10px 24px -14px rgba(74, 15, 26, 0.35);
+  --transition-base: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--offwhite);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Fokus keyboard tetap terlihat (aksesibilitas) --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--gold-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* =====================================================================
+   HEADER / NAVBAR
+   Dua wujud: kapsul tunggal di paling atas halaman, lalu "pecah" jadi
+   2 kapsul kecil (logo di kiri, menu di kanan) begitu discroll —
+   mengosongkan bagian tengah. Supaya konten yang lewat di celah kosong
+   itu tidak pernah kelihatan "kepotong" kasar, ada lapisan gradasi
+   lembut (bukan kotak solid) di baliknya yang menyamarkan apa pun yang
+   lewat di sana.
+   ===================================================================== */
+.site-header {
+  position: sticky;
+  top: 16px;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* area kosong di sekitar kapsul tidak menutup klik konten */
+}
+
+/* Gradasi lembut di balik nav — cuma aktif begitu discroll, menyamarkan
+   apa pun yang lewat di celah kosong tanpa perlu kotak solid penuh. */
+.site-header::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 8, 7, 0.5),
+    rgba(18, 8, 7, 0)
+  );
+  opacity: 0;
+  transition: opacity 320ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.site-header .container {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: calc(100% - 32px);
+  max-width: 980px;
+  padding: 0 14px 0 18px;
+  height: 64px;
+  background: var(--maroon-900);
+  border: 1px solid rgba(226, 200, 120, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 16px 34px -20px rgba(0, 0, 0, 0.5);
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    height 320ms ease;
+}
+
+/* Begitu discroll: kapsul tunggal "pecah" jadi 2 kapsul kecil terpisah,
+   dan batas lebar 980px dilepas supaya logo & menu nyebar sampai ke
+   pinggir layar (bukan berhenti di tengah). */
+.site-header.is-scrolled .container {
+  max-width: none;
+  height: 56px;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.brand,
+.nav-links,
+.nav-toggle {
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    padding 320ms ease;
+}
+
+.site-header.is-scrolled .brand,
+.site-header.is-scrolled .nav-links,
+.site-header.is-scrolled .nav-toggle {
+  background: var(--maroon-900);
+  border: 1px solid rgba(226, 200, 120, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px -18px rgba(0, 0, 0, 0.45);
+}
+
+.site-header.is-scrolled .brand {
+  padding: 10px 18px;
+}
+.site-header.is-scrolled .nav-links {
+  padding: 6px;
+}
+.site-header.is-scrolled .nav-toggle {
+  padding: 8px 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--offwhite);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-300));
+  display: grid;
+  place-items: center;
+  color: var(--maroon-900);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 9px 16px;
+  color: #f1e6da;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 999px;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.nav-links a:hover {
+  background: rgba(226, 200, 120, 0.18);
+  transform: translateY(-1px);
+}
+
+.nav-links a[aria-current="page"] {
+  background: var(--gold-500);
+  color: var(--maroon-900);
+  font-weight: 700;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--offwhite);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 6px;
+}
+
+@media (max-width: 760px) {
+  /* Menu hamburger & dropdown diganti nav bawah (.bottom-nav) — di
+     mobile header cuma nampilin logo. */
+  .nav-toggle,
+  .nav-links {
+    display: none !important;
+  }
+
+  /* Header jadi kapsul kecil mengambang berisi logo saja, SELALU
+     begini apa pun status scroll-nya (tidak lagi ikut aturan
+     is-scrolled/split yang cuma relevan buat layar lebar) — ini yang
+     menghilangkan seluruh kelas bug sebelumnya. */
+  .site-header .container,
+  .site-header.is-scrolled .container {
+    width: auto;
+    max-width: none;
+    height: auto;
+    padding: 10px 20px;
+    background: var(--maroon-900);
+    border: 1px solid rgba(226, 200, 120, 0.3);
+    border-radius: 999px;
+    box-shadow: 0 12px 26px -16px rgba(0, 0, 0, 0.45);
+  }
+
+  .brand,
+  .site-header.is-scrolled .brand {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .site-header::before {
+    display: none;
+  }
+
+  /* Ruang di bawah biar konten terakhir (footer) tidak ketutup nav bawah */
+  body {
+    padding-bottom: 78px;
+  }
+}
+
+/* =====================================================================
+   BOTTOM NAV — navigasi utama di mobile, menggantikan hamburger.
+   Selalu nempel di bawah layar, tidak bergantung status scroll sama
+   sekali, jadi tidak mungkin "hilang" atau nabrak konten.
+   ===================================================================== */
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    background: var(--maroon-900);
+    border-top: 1px solid rgba(226, 200, 120, 0.22);
+    box-shadow: 0 -10px 24px -16px rgba(0, 0, 0, 0.4);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 2px;
+    color: #d9c8ba;
+    font-size: 0.66rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition:
+      background-color 220ms ease,
+      color 220ms ease;
+  }
+
+  .bottom-nav a:active {
+    background: rgba(226, 200, 120, 0.14);
+  }
+
+  .bottom-nav__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bottom-nav__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bottom-nav a[aria-current="page"] {
+    color: var(--gold-300);
+  }
+}
+.nav-links a {
+  padding: 12px 16px;
+}
+
+/* =====================================================================
+   TOMBOL
+   ===================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--maroon-700);
+  color: var(--offwhite);
+}
+.btn-primary:hover {
+  background: var(--maroon-600);
+}
+
+.btn-ghost {
+  background: rgba(122, 31, 44, 0.05);
+  border-color: rgba(122, 31, 44, 0.35);
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  background: rgba(122, 31, 44, 0.1);
+  border-color: var(--gold-500);
+  color: var(--maroon-700);
+}
+
+.btn-accent {
+  background: var(--gold-500);
+  color: var(--maroon-900);
+}
+.btn-accent:hover {
+  background: var(--gold-300);
+}
+
+/* =====================================================================
+   PAGE HERO — dipakai bareng di beberapa halaman (galeri, artikel, dst)
+   ===================================================================== */
+.page-hero {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.page-hero__kicker {
+  display: inline-block;
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--maroon-900);
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-hero p {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =====================================================================
+   FILTER TABS — dipakai di karya.html, galeri-detail.html & artikel.html
+   ===================================================================== */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 28px 0 28px;
+}
+
+.filter-tab {
+  background: rgba(200, 161, 58, 0.14);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--maroon-700);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.filter-tab:hover {
+  background: rgba(200, 161, 58, 0.26);
+  transform: translateY(-1px);
+}
+
+.filter-tab.is-active {
+  background: var(--gold-500);
+  border-color: var(--maroon-900);
+  color: var(--maroon-900);
+}
+
+/* =====================================================================
+   SKELETON LOADING — dipakai saat data masih dimuat (karya, galeri, artikel)
+   ===================================================================== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--line) 25%,
+    #f2ece0 50%,
+    var(--line) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.skeleton-card__thumb {
+  aspect-ratio: 16 / 9;
+}
+
+.skeleton-card__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-line {
+  height: 12px;
+}
+.skeleton-line--wide {
+  width: 90%;
+}
+.skeleton-line--mid {
+  width: 60%;
+}
+.skeleton-line--short {
+  width: 40%;
+}
+
+/* =====================================================================
+   MUAT LEBIH BANYAK (pagination)
+   ===================================================================== */
+.load-more-wrap {
+  text-align: center;
+  padding: 16px 0 40px;
+}
+
+/* =====================================================================
+   REVEAL ON SCROLL — elemen muncul halus saat discroll ke arahnya
+   (di-toggle oleh IntersectionObserver di main.js)
+   ===================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efek berjenjang untuk grid kartu statis (mis. quick-links di Beranda) */
+.reveal:nth-child(2) {
+  transition-delay: 80ms;
+}
+.reveal:nth-child(3) {
+  transition-delay: 160ms;
+}
+.reveal:nth-child(4) {
+  transition-delay: 240ms;
+}
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.site-footer {
+  background: var(--maroon-900);
+  color: #cbb9ae;
+  margin-top: 80px;
+}
+
+.site-footer .container {
+  padding-top: 40px;
+  padding-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.site-footer strong {
+  color: var(--offwhite);
+}

@@ -1,0 +1,140 @@
+/* =====================================================================
+   BERANDA.CSS — Halaman Beranda (index.html)
+   ===================================================================== */
+
+.hero-main {
+  position: relative;
+  overflow: hidden;
+  padding: 84px 0 96px;
+  background: linear-gradient(180deg, var(--offwhite) 0%, #f2ece0 100%);
+}
+
+.hero-main__decor {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--gold-300), transparent 70%);
+  opacity: 0.5;
+}
+
+.hero-main .container {
+  position: relative;
+  max-width: 720px;
+  text-align: center;
+}
+
+.hero-main__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+}
+
+.hero-main h1 {
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  color: var(--maroon-900);
+  max-width: 17ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
+
+.hero-main p {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 28px;
+}
+
+.hero-main__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- Quick Links --- */
+.quick-links {
+  padding: 12px 0 88px;
+}
+
+.quick-links__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.quick-link-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.quick-link-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-500);
+  box-shadow: var(--shadow-card);
+}
+
+.quick-link-card__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--maroon-900);
+  color: var(--gold-300);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.quick-link-card h3 {
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.quick-link-card p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Teaser Profil --- */
+.profile-teaser {
+  background: var(--maroon-900);
+  color: #f1e6da;
+  padding: 60px 0;
+}
+
+.profile-teaser .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.profile-teaser h2 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.profile-teaser p {
+  color: #d9c8ba;
+  margin: 0;
+  max-width: 48ch;
+}

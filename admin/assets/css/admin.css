@@ -1,0 +1,333 @@
+/* =====================================================================
+   ADMIN.CSS — Panel admin HMIF Unperba
+   Dipakai BERSAMA public/assets/css/global.css (variabel warna, font,
+   komponen .btn dari sana masih dipakai di sini).
+   ===================================================================== */
+
+/* --- Halaman Login --- */
+.auth-body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--maroon-900), var(--maroon-700));
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--paper);
+  border-radius: 18px;
+  padding: 36px 32px;
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.4);
+}
+
+.auth-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--maroon-900);
+  margin-bottom: 20px;
+}
+
+.auth-card h1 {
+  font-size: 1.3rem;
+  color: var(--maroon-900);
+  margin-bottom: 4px;
+}
+
+.auth-card__hint {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 22px;
+}
+
+.auth-card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 14px 0 6px;
+  color: var(--ink);
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.auth-card input:focus {
+  border-color: var(--gold-500);
+  outline: none;
+}
+
+.auth-card__error {
+  color: #b3261e;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin: 10px 0 0;
+}
+
+.auth-card__submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+/* --- Layout Dashboard / halaman CRUD --- */
+.admin-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  background: var(--maroon-900);
+  color: var(--offwhite);
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.admin-nav a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #f1e6da;
+  font-size: 0.95rem;
+  transition: background var(--transition-base), color var(--transition-base);
+}
+
+.admin-nav a:hover { background: rgba(255, 255, 255, 0.08); }
+
+.admin-nav a[aria-current="page"] {
+  background: var(--gold-500);
+  color: var(--maroon-900);
+  font-weight: 600;
+}
+
+.admin-sidebar__logout {
+  margin-top: auto;
+  color: var(--offwhite);
+  border-color: rgba(241, 230, 218, 0.35);
+}
+
+.admin-sidebar__logout:hover {
+  color: var(--maroon-900);
+  background: var(--gold-500);
+  border-color: var(--gold-500);
+}
+
+.admin-content {
+  padding: 40px 44px;
+  max-width: 960px;
+}
+
+.admin-content__header h1 {
+  color: var(--maroon-900);
+  margin-bottom: 4px;
+}
+
+.admin-content__header p { color: var(--ink-soft); }
+
+.admin-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.admin-menu-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.admin-menu-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-500);
+}
+
+.admin-menu-card h2 {
+  font-size: 1.05rem;
+  color: var(--maroon-900);
+}
+
+.admin-menu-card p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Kartu form / tabel di halaman CRUD --- */
+.admin-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin-top: 24px;
+}
+
+.admin-card h2 {
+  font-size: 1.1rem;
+  color: var(--maroon-900);
+  margin-bottom: 16px;
+}
+
+.admin-card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+
+.admin-card input,
+.admin-card textarea,
+.admin-card select {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  resize: vertical;
+}
+
+.admin-card input:focus,
+.admin-card textarea:focus,
+.admin-card select:focus {
+  border-color: var(--gold-500);
+  outline: none;
+}
+
+.admin-card__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.admin-card__header-row h2 { margin-bottom: 0; }
+
+.admin-card__header-row select {
+  width: auto;
+  min-width: 200px;
+}
+
+.admin-card__error {
+  color: #b3261e;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.admin-hint {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin: -2px 0 0;
+}
+
+.admin-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.admin-upload-status {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 6px 0 0;
+}
+
+.admin-upload-preview { margin: 10px 0 4px; }
+
+.admin-upload-preview img {
+  max-width: 220px;
+  max-height: 140px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  object-fit: cover;
+}
+
+/* Dipakai saat lebih dari satu foto dipilih sekaligus (galeri-crud.js) */
+.admin-upload-preview--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.admin-upload-preview--grid img {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.admin-table-wrap { overflow-x: auto; }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-table th {
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.admin-table__actions { display: flex; gap: 12px; }
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.btn-link:hover { text-decoration: underline; }
+
+.btn-link--danger { color: #b3261e; }
+
+@media (max-width: 820px) {
+  .admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar { flex-direction: row; align-items: center; padding: 14px 20px; }
+  .admin-nav { flex-direction: row; flex-wrap: wrap; }
+  .admin-sidebar__logout { margin-top: 0; margin-left: auto; }
+  .admin-content { padding: 28px 20px; }
+}

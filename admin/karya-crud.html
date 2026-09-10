@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelola Pojok Karya — Admin HMIF Unperba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../public/assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand"><span class="brand-mark">HI</span> Admin HMIF</div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="karya-crud.html" aria-current="page">Pojok Karya</a>
+        <a href="galeri-crud.html">Galeri Kegiatan</a>
+        <a href="artikel-crud.html">Artikel</a>
+        <a href="anggota-foto-crud.html">Foto Pengurus</a>
+      </nav>
+      <button id="logoutBtn" class="btn btn-ghost admin-sidebar__logout">Keluar</button>
+    </aside>
+
+    <main class="admin-content">
+      <header class="admin-content__header">
+        <h1>Pojok Karya Mahasiswa</h1>
+        <p>Perubahan di sini langsung tampil di halaman publik <code>karya.html</code>.</p>
+      </header>
+
+      <section class="admin-card">
+        <h2 id="formTitle">Tambah Karya Baru</h2>
+        <form id="karyaForm" novalidate>
+          <input type="hidden" id="karyaId" />
+
+          <label for="judul_karya">Judul Karya</label>
+          <input type="text" id="judul_karya" required />
+
+          <label for="kreator">Nama Kreator / Tim</label>
+          <input type="text" id="kreator" required />
+
+          <label for="kategori">Kategori</label>
+          <input type="text" id="kategori" placeholder="misal: Web, Mobile, AI/ML" />
+
+          <label for="youtube_url">URL Demo YouTube</label>
+          <input type="url" id="youtube_url" placeholder="https://youtube.com/watch?v=..." />
+
+          <label for="github_url">URL Repository GitHub</label>
+          <input type="url" id="github_url" placeholder="https://github.com/..." />
+
+          <label for="deskripsi_html">Deskripsi</label>
+          <textarea id="deskripsi_html" rows="5" placeholder="Boleh pakai tag HTML dasar seperti <p>, <strong>, <ul>"></textarea>
+
+          <p class="admin-card__error" id="formError" role="alert"></p>
+
+          <div class="admin-card__actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Simpan Karya</button>
+            <button type="button" class="btn btn-ghost" id="cancelEditBtn" hidden>Batal Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-card">
+        <h2>Daftar Karya</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="karyaTable">
+            <thead>
+              <tr>
+                <th>Judul</th>
+                <th>Kreator</th>
+                <th>Kategori</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="karyaTableBody">
+              <tr><td colspan="4">Memuat data…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="../public/assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/admin-auth.js" defer></script>
+  <script src="assets/js/karya-crud.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin — HMIF Unperba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../public/assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand"><span class="brand-mark">HI</span> Admin HMIF</div>
+      <nav class="admin-nav">
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="karya-crud.html">Pojok Karya</a>
+        <a href="galeri-crud.html">Galeri Kegiatan</a>
+        <a href="artikel-crud.html">Artikel</a>
+        <a href="anggota-foto-crud.html">Foto Pengurus</a>
+      </nav>
+      <button id="logoutBtn" class="btn btn-ghost admin-sidebar__logout">Keluar</button>
+    </aside>
+
+    <main class="admin-content">
+      <header class="admin-content__header">
+        <h1>Dashboard</h1>
+        <p>Kelola konten website publik HMIF Unperba dari sini.</p>
+      </header>
+
+      <section class="admin-menu-grid">
+        <a class="admin-menu-card" href="karya-crud.html">
+          <h2>Pojok Karya Mahasiswa</h2>
+          <p>Tambah, ubah, atau hapus karya mahasiswa yang tampil di halaman publik karya.html.</p>
+        </a>
+        <a class="admin-menu-card" href="galeri-crud.html">
+          <h2>Galeri Kegiatan</h2>
+          <p>Kelola dokumentasi foto kegiatan beserta kategori filternya.</p>
+        </a>
+        <a class="admin-menu-card" href="artikel-crud.html">
+          <h2>Artikel</h2>
+          <p>Tulis dan kelola artikel/essay publikasi mahasiswa.</p>
+        </a>
+        <a class="admin-menu-card" href="anggota-foto-crud.html">
+          <h2>Foto Pengurus</h2>
+          <p>Atur foto profil pengurus yang tampil di halaman Profil.</p>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="../public/assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/admin-auth.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      requireAuth();
+      bindLogout();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin — HMIF Unperba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../public/assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body class="auth-body">
+
+  <main class="auth-card">
+    <div class="auth-card__brand">
+      <span class="brand-mark">HI</span>
+      <span>HMIF Unperba</span>
+    </div>
+
+    <h1>Login Admin</h1>
+    <p class="auth-card__hint">Khusus pengurus HMIF yang akunnya sudah terdaftar di Supabase Auth.</p>
+
+    <form id="loginForm" novalidate>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="username" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password" />
+
+      <p class="auth-card__error" id="loginError" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary auth-card__submit">Masuk</button>
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="../public/assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/admin-auth.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      redirectIfAuthed();
+      bindLoginForm('loginForm');
+    });
+  </script>
+
+</body>
+</html>

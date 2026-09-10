@@ -1,0 +1,136 @@
+/* =====================================================================
+   PROFIL.CSS — Halaman Profil (profil.html)
+   ===================================================================== */
+
+.profil-hero {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+
+.profil-hero__kicker {
+  display: inline-block;
+  color: var(--maroon-700);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.profil-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  color: var(--maroon-900);
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profil-hero p {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Sejarah --- */
+.sejarah {
+  padding: 56px 0;
+  text-align: center;
+}
+
+.sejarah h2 {
+  color: var(--maroon-900);
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.sejarah__body {
+  max-width: 72ch;
+  color: var(--ink);
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; /* paragraf tetap rata kiri biar enak dibaca, cuma bloknya yang di tengah */
+}
+
+.sejarah__body p { margin-bottom: 1em; }
+
+/* --- Struktur Organisasi --- */
+.struktur {
+  padding: 16px 0 80px;
+  text-align: center;
+}
+
+.struktur h2 {
+  color: var(--maroon-900);
+  font-size: 1.5rem;
+  margin-bottom: 22px;
+}
+
+.struktur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: center;
+  gap: 22px;
+}
+
+.member-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  text-align: center;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-500);
+  box-shadow: var(--shadow-card);
+}
+
+.member-card__photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  overflow: hidden;
+  background: var(--maroon-900);
+  display: grid;
+  place-items: center;
+  color: var(--gold-300);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.member-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-card__nama {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.member-card__jabatan {
+  font-size: 0.86rem;
+  color: var(--maroon-700);
+  font-weight: 600;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.struktur-state {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--ink-soft);
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelola Galeri — Admin HMIF Unperba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../public/assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand"><span class="brand-mark">HI</span> Admin HMIF</div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="karya-crud.html">Pojok Karya</a>
+        <a href="galeri-crud.html" aria-current="page">Galeri Kegiatan</a>
+        <a href="artikel-crud.html">Artikel</a>
+        <a href="anggota-foto-crud.html">Foto Pengurus</a>
+      </nav>
+      <button id="logoutBtn" class="btn btn-ghost admin-sidebar__logout">Keluar</button>
+    </aside>
+
+    <main class="admin-content">
+      <header class="admin-content__header">
+        <h1>Galeri Kegiatan</h1>
+        <p>Perubahan di sini langsung tampil di halaman publik <code>galeri.html</code>.</p>
+      </header>
+
+      <section class="admin-card">
+        <h2 id="formTitle">Tambah Foto Baru</h2>
+        <form id="galeriForm" novalidate>
+          <input type="hidden" id="galeriId" />
+
+          <label for="nama_kegiatan">Nama Kegiatan</label>
+          <input type="text" id="nama_kegiatan" list="kegiatanList" placeholder="misal: Seminar Nasional AI 2026" required />
+          <datalist id="kegiatanList"></datalist>
+          <p class="admin-hint">Foto dikelompokkan jadi satu album di halaman publik berdasarkan nama ini — pakai nama yang SAMA PERSIS untuk kegiatan yang sama (pilih dari saran yang muncul kalau sudah pernah diketik sebelumnya).</p>
+
+          <label for="kategori_filter">Kategori dalam Kegiatan (opsional)</label>
+          <input type="text" id="kategori_filter" placeholder="misal: Hari 1, Hari 2, Dokumentasi Panitia" />
+
+          <label for="judul_foto">Judul Foto (opsional)</label>
+          <input type="text" id="judul_foto" />
+          <p class="admin-hint">Kosongkan aja kalau males mikirin judul tiap foto — otomatis dipakai "Nama Kegiatan – Kategori". Kalau pilih lebih dari satu gambar, judulnya otomatis diberi nomor urut (1), (2), dst.</p>
+
+          <label for="image_files" id="imageFilesLabel">Gambar (boleh pilih beberapa sekaligus)</label>
+          <p class="admin-hint">Disarankan foto landscape (lebar), rasio sekitar 4:3 — hasil jepretan HP/kamera biasa umumnya sudah pas, tidak perlu di-crop dulu.</p>
+          <input type="file" id="image_files" accept="image/*" multiple />
+          <p class="admin-upload-status" id="uploadStatus"></p>
+          <div class="admin-upload-preview" id="imagePreview"></div>
+
+          <p class="admin-card__error" id="formError" role="alert"></p>
+
+          <div class="admin-card__actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Simpan Foto</button>
+            <button type="button" class="btn btn-ghost" id="cancelEditBtn" hidden>Batal Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-card">
+        <div class="admin-card__header-row">
+          <h2>Daftar Foto</h2>
+          <select id="filterKegiatan" aria-label="Filter berdasarkan kegiatan">
+            <option value="">Semua Kegiatan</option>
+          </select>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="galeriTable">
+            <thead>
+              <tr>
+                <th>Kegiatan</th>
+                <th>Judul</th>
+                <th>Kategori</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="galeriTableBody">
+              <tr><td colspan="4">Memuat data…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="../public/assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/admin-auth.js" defer></script>
+  <script src="assets/js/upload-helper.js" defer></script>
+  <script src="assets/js/galeri-crud.js" defer></script>
+
+</body>
+</html>

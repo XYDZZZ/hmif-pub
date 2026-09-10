@@ -1,0 +1,223 @@
+/* =====================================================================
+   GALERI.CSS — Halaman Galeri Kegiatan (galeri.html)
+   Hero & filter tabs pakai komponen bersama dari global.css
+   (.page-hero, .filter-tabs, .filter-tab).
+   ===================================================================== */
+
+/* --- Album Cards (galeri.html — daftar kegiatan) --- */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 260px);
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.album-card {
+  display: block;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.album-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--gold-500);
+}
+
+.album-card__thumb {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--maroon-900);
+}
+
+.album-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms ease;
+}
+
+.album-card:hover .album-card__thumb img { transform: scale(1.06); }
+
+.album-card__caption { padding: 16px; }
+
+.album-card__judul {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.album-card__count {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* --- Grid & Kartu Foto (galeri-detail.html) --- */
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 260px);
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.galeri-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.galeri-card:hover,
+.galeri-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--gold-500);
+}
+
+.galeri-card__thumb {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--maroon-900);
+}
+
+.galeri-grid .skeleton-card__thumb { aspect-ratio: 4 / 3; }
+
+.galeri-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms ease;
+}
+
+.galeri-card:hover .galeri-card__thumb img { transform: scale(1.06); }
+
+.galeri-card__caption {
+  padding: 14px 16px 16px;
+}
+
+.galeri-card__kategori {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--maroon-700);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.galeri-card__judul {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.galeri-state {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* =====================================================================
+   LIGHTBOX — lihat foto ukuran penuh
+   ===================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.lightbox.is-open { display: flex; }
+
+.lightbox__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 27, 24, 0.82);
+  animation: fade-in 200ms ease both;
+}
+
+.lightbox__panel {
+  position: relative;
+  max-width: 880px;
+  width: 100%;
+  animation: modal-in 260ms ease both;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lightbox__panel img {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #000;
+}
+
+.lightbox__caption {
+  color: #f1e6da;
+  text-align: center;
+  padding-top: 14px;
+  font-size: 0.95rem;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-300);
+  background: var(--maroon-900);
+  color: var(--gold-300);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+.lightbox__close:hover { background: var(--maroon-700); }
+
+/* --- Navigasi Prev/Next di lightbox --- */
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 230, 218, 0.35);
+  background: rgba(74, 15, 26, 0.6);
+  color: var(--gold-300);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition-base);
+  z-index: 1;
+}
+.lightbox__nav:hover { background: var(--maroon-700); }
+.lightbox__nav--prev { left: 16px; }
+.lightbox__nav--next { right: 16px; }
+
+@media (max-width: 640px) {
+  .lightbox__nav { width: 38px; height: 38px; font-size: 0.95rem; }
+  .lightbox__nav--prev { left: 6px; }
+  .lightbox__nav--next { right: 6px; }
+}

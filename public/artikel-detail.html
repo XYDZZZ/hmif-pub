@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artikel — HMIF Unperba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/artikel.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">HI</span>
+        HMIF Unperba
+      </a>
+      <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="karya.html">Karya</a></li>
+        <li><a href="artikel.html" aria-current="page">Artikel</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="container artikel-detail">
+      <a href="artikel.html" class="artikel-detail__back">&larr; Kembali ke Artikel</a>
+      <article id="artikelDetail">
+        <p class="artikel-state">Memuat artikel…</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong>HMIF Unperba</strong> — Himpunan Mahasiswa Informatika, Universitas Perwira Purbalingga</span>
+      <span>&copy; <span id="year"></span> HMIF Unperba</span>
+    </div>
+  </footer>
+
+
+  <nav class="bottom-nav" aria-label="Navigasi utama">
+    <a href="index.html">
+      <span class="bottom-nav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10" /></svg></span>
+      <span>Beranda</span>
+    </a>
+    <a href="profil.html">
+      <span class="bottom-nav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+      <span>Profil</span>
+    </a>
+    <a href="galeri.html">
+      <span class="bottom-nav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5-4 4-3-3-6 6"/></svg></span>
+      <span>Galeri</span>
+    </a>
+    <a href="karya.html">
+      <span class="bottom-nav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg></span>
+      <span>Karya</span>
+    </a>
+    <a href="artikel.html" aria-current="page">
+      <span class="bottom-nav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h10l5 5v15H6z"/><path d="M16 2v6h5"/><path d="M9 13h7M9 17h7"/></svg></span>
+      <span>Artikel</span>
+    </a>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase-client.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/artikel-detail.js" defer></script>
+
+</body>
+</html>
